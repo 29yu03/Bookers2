@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <script src="https://kit.fontawesome.com/0edaaf4d35.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="application.css" />
   </head>
 
   <body>
    <header>
+     <div class="container">
+       <div class="row" style="background-color:#222222:">
     <% if user_signed_in? %>
       <li>
         <%= link_to "Bookers", root_path %>
@@ -35,17 +35,18 @@
         <%= link_to "ログイン", new_user_session_path %>
       </li>
     <% end %>
+      </div>
+    </div>
   </header>
     <%= yield %>
   <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col">g</div>
-        <div class="col">CopyRight Infratop.inc</div>
-        <div class="col">g</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12" style="text-align: center;">
+        CopyRight Infratop.inc
       </div>
     </div>
-
-  </footer>
+  </div>
+</footer>
   </body>
 </html>
