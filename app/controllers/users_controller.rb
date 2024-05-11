@@ -1,10 +1,40 @@
 class UsersController < ApplicationController
+before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
-
+    @user = Books.find(params[:id])
+    @books = @user.books.page(params[:page])
   end
 
   def edit
-
+    @user = Books.find(params[:id])
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_path(@user.id)
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
+  end
+
+  def is_matching_login_user
+    begin
+    user = User.find(params[:id])
+
+    rescue ActiveRecord::RecordNotFound
+      redirect_to books_path
+      return
+    end
+
+    unless user.id == current_user.id
+      redirect_to books_path
+    end
+  end
+
+
 end
