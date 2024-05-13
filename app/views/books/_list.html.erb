@@ -1,0 +1,45 @@
+
+<html>
+  <head>
+    <script src="https://kit.fontawesome.com/0edaaf4d35.js" crossorigin="anonymous"></script>
+  </head>
+      <div class="col-md-3">
+        <h2>User info</h2>
+
+      <div>
+       <%= image_tag @user.get_profile_image(100,100) %>
+      </div>
+      <table class="w-100">
+        <tbody>
+          <tr class="row-12 border-top py-5">
+            <td class="col-6">name</td>
+            <td class="col-6"><%= @user.name  || "name" %></td>
+          </tr>
+          <tr class="row-12 border-top">
+            <td class="col-6">introduction</td>
+            <td class="col-6"><%= @user.introduction  || "introduction" %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="row mt-5">
+        <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+
+      <h3>New book</h3>
+      <%= form_with model: Book do |f| %>
+        <h5>Title</h5>
+        <%= f.text_field :title %>
+        <h5>Opinion</h5>
+        <%= f.text_area :body %>
+        <br>
+        <%= button_tag( class: "btn btn-success my-3") do %>
+          <%= content_tag :span, "Create Book", class: "glyphicon glyphicon-plus" %>
+        <% end %>
+
+      <% end %>
+
+      </div>
+</html>

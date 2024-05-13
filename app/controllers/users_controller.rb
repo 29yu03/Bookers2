@@ -16,10 +16,14 @@ before_action :is_matching_login_user, only: [:edit, :update]
     redirect_to user_path(@user.id)
   end
 
+  def index
+
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 
   def is_matching_login_user
@@ -35,6 +39,4 @@ before_action :is_matching_login_user, only: [:edit, :update]
       redirect_to books_path
     end
   end
-
-
 end

@@ -1,16 +1,25 @@
-<div class="container-fluid px-5">
+<div class="container px-5">
   <div class="row">
-    <div class="col-md-3">
-
-
-    </div>
+    <%= render 'list', books: @books %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Book detail</h2>
-       <div class="row border-top">
-        <%= image_tag @user.get_profile_image(100,100) %>
-       </div>
-
-
+      <table>
+        <tbody>
+          <tr class="row-md-12 border-top">
+            <td class="col-2 p-3"><%= image_tag @user.get_profile_image(100,100) %>
+            <br><%= link_to @user.name  || "name", user_path %></td>
+            <td class="col-4 p-3 align-top"><%= link_to @book.title %></td>
+            <td class="col p-3 align-top"><%= @book.body %></td>
+            <td class="col mt-5 mb-3">
+              <%= link_to "edit", edit_book_path(@book), class: "btn btn-success" %>
+            </td>
+            <td class="col mt-5 mb-3">
+              <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
   </div>
 </div>
