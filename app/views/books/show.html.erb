@@ -8,7 +8,7 @@
         <tbody>
           <tr class="row-md-12 border-top">
             <td class="col-2 p-3"><%= image_tag @user.get_profile_image(100,100) %>
-            <br><%= link_to @user.name  || "name", user_path %></td>
+            <br><%= link_to @user.name  || "name", user_path(@user) %></td>
             <td class="col-4 p-3 align-top"><%= link_to @book.title %></td>
             <td class="col p-3 align-top"><%= @book.body %></td>
             <td class="col mt-5 mb-3">

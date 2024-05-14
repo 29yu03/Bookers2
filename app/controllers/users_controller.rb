@@ -10,6 +10,24 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @user = User.find(params[:id])
   end
 
+  def  create
+    @user =User.new(user_params)
+    if @user.save
+      flash[:notice]= "Welcome! You have signed up successfully."
+      redirect_to root_path(@user.id)
+    else
+      render :new
+    end
+
+    if @user.save
+      flash[:success]= "Signed in successfully."
+      redirect_to root_path(@user.id)
+    else
+      render :new
+    end
+
+  end
+
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
@@ -17,7 +35,8 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def index
-
+    @users = User.all
+    @user = current_user
   end
 
   private
