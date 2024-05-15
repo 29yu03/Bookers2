@@ -1,4 +1,8 @@
-
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
 
 <div class="container">
   <div class="row mt-3">

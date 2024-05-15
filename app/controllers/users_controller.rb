@@ -10,7 +10,7 @@ before_action :is_matching_login_user, only: [:edit, :update]
     @user = User.find(params[:id])
   end
 
-  def  create
+  def create
     @user =User.new(user_params)
     if @user.save
       flash[:notice]= "Welcome! You have signed up successfully."
@@ -18,21 +18,32 @@ before_action :is_matching_login_user, only: [:edit, :update]
     else
       render :new
     end
+  end
 
+  def create
     if @user.save
       flash[:success]= "Signed in successfully."
       redirect_to root_path(@user.id)
     else
       render :new
     end
+  end
 
+  def destroy
+    flash[:notice] = 'Signed out successfully.'
+    redirect_to root_path
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice] = 'You have updated user successfully.'
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
+
 
   def index
     @users = User.all
