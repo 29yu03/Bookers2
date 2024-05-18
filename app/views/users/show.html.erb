@@ -21,7 +21,10 @@
         <tbody>
             <% @books.each do |book| %>
           <tr class="row border-top">
-            <td class="col-3 p-3"><%= image_tag @user.get_profile_image(100,100) %></td>
+            <td class="col-3 p-3">
+              <%= link_to user_path(book.user) do %>
+                <%= image_tag @user.get_profile_image(100, 100) %></td>
+              <% end %>
             <td class="col-3 p-3 align-top"><%= link_to book.title, book %></td>
             <td class="col-6 p-3 align-top"><%= book.body %></td>
           </tr>

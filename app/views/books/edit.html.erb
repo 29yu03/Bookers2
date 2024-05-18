@@ -3,6 +3,19 @@
     <div class="col-md-7 mx-auto">
 
 <h1 class="pt-3">Editing Book</h1>
+
+<% if @book.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with model: @book do |f| %>
 
   <label for="inputName">Title</label>
@@ -16,8 +29,10 @@
   <%= button_tag( class: "btn btn-success") do %>
     <%= content_tag :span, "Update Book", class: "glyphicon glyphicon-plus" %>
   <% end %>
-
 <% end %>
+<div class="mt-3">
+<%= link_to "Show", book_path(@book) %> | <%= link_to "Back", books_path %>
+</div>
 </div>
     </div>
 </div>

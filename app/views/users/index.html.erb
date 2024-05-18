@@ -7,17 +7,17 @@
       <table class="table">
         <thead>
           <tr class="row border-top">
-            <th class="col-2 p-3">image</th>
+            <th class="col-4 p-3">image</th>
             <th class="col-5 p-3">name</th>
-            <th class="col-5 p-3"></th>
+            <th class="col-3 p-3"></th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |user| %>
             <tr class="row border-top">
-              <td class="col-2 p-3"><%= image_tag user.get_profile_image(100,100) %></td>
+              <td class="col-4 p-3"><%= image_tag user.get_profile_image(100,100) %></td>
               <td class="col-5 p-3 align-top"><%= user.name %></td>
-              <td class="col-5 p-3 align-top"><%= link_to "Show", user_path(user)%></td>
+              <td class="col-3 p-3 align-top"><%= link_to "Show", user_path(user)%></td>
             </tr>
           <% end %>
         </tbody>

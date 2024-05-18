@@ -20,7 +20,7 @@
 
 
     <div class="col-md-8 offset-md-1">
-      <h2>Books</h2> 画像のリンクがおかしい
+      <h2>Books</h2>
       <table>
         <thead>
           <tr class="row-md-12 border-top">
@@ -33,7 +33,7 @@
           <% @books.each do |book| %>
             <tr class="row-md-12 border-top">
               <td class="col-2 p-3">
-                <%= link_to user_path(@user) do %>
+                <%= link_to user_path(book.user) do %>
                 <%= image_tag book.user.get_profile_image(100,100) %></td>
                 <% end %>
               <td class="col-4 p-3 align-top"><%= link_to book.title, book_path(book) %></td>

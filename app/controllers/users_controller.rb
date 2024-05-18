@@ -65,16 +65,9 @@ before_action :is_matching_login_user, only: [:edit, :update]
   end
 
   def is_matching_login_user
-    begin
     user = User.find(params[:id])
-
-    rescue ActiveRecord::RecordNotFound
-      redirect_to books_path
-      return
-    end
-
     unless user.id == current_user.id
-      redirect_to books_path
+      redirect_to user_path(current_user)
     end
   end
 end
