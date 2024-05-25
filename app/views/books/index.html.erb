@@ -24,22 +24,44 @@
       <table>
         <thead>
           <tr class="row-md-12 border-top">
-            <th class="col-2 p-3"></th>
-            <th class="col-4 p-3">Title</th>
-            <th class="col-6 p-3">Opinion</th>
+            <th class="col-3 p-3"></th>
+            <th class="col-2 p-3">Title</th>
+            <th class="col-3 p-3">Opinion</th>
+            <th class="col-1 p-3"></th>
+            <th class="col-3 p-3"></th>
           </tr>
         </thead>
         <tbody>
           <% @books.each do |book| %>
             <tr class="row-md-12 border-top">
-              <td class="col-2 p-3">
+              <td class="col-3 p-3">
                 <%= link_to user_path(book.user) do %>
                 <%= image_tag book.user.get_profile_image(100,100) %></td>
                 <% end %>
-              <td class="col-4 p-3 align-top"><%= link_to book.title, book_path(book) %></td>
-              <td class="col-6 p-3 align-top"><%= book.body %></td>
+              <td class="col-2 p-3 align-top"><%= link_to book.title, book_path(book) %></td>
+              <td class="col-3 p-3 align-top"><%= book.body %></td>
+              <td class="col-1 p-3">
+                <% if book.favorited_by?(current_user) %>
+                  <p>
+                    <%= link_to book_favorite_path(book), method: :delete do %>
+                      ♥<%= book.favorites.count %>
+                    <% end %>
+                  </p>
+                    <% else %>
+                  <p>
+                    <%= link_to book_favorite_path(book), method: :post do %>
+                      ♡<%= book.favorites.count %>
+                    <% end %>
+                  </p>
+                <% end %>
+              </td>
+              <td class="col-3 p-3">
+                <p>コメント数：<%= book.book_comments.count %></p>
+              </td>
             </tr>
+
           <% end %>
+
         </tbody>
       </table>
     </div>
