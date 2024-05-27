@@ -2,6 +2,7 @@
   <head>
     <script src="https://kit.fontawesome.com/0edaaf4d35.js" crossorigin="anonymous"></script>
   </head>
+    <body>
       <div class="col-md-3">
         <h2>User info</h2>
 
@@ -11,15 +12,30 @@
       <table class="w-100">
         <tbody>
           <tr class="row-12 border-top my-5">
-            <td class="col-6 my-4">name</td>
-            <td class="col-6 my-4"><%= @user.name  || "name" %></td>
+            <td class="col-6 py-2">name</td>
+            <td class="col-6 py-2"><%= @user.name  || "name" %></td>
+          </tr>
+          <tr class="row-12">
+            <td class="col-6 py-2">introduction</td>
+            <td class="col-6 py-2" style="font-size: 70%;"><%= @user.introduction  || "introduction" %></td>
           </tr>
           <tr class="row-12 border-top">
-            <td class="col-6">introduction</td>
-            <td class="col-6"><%= @user.introduction  || "introduction" %></td>
+            <td class="col-6 py-3">followed</td>
+            <td class="col-6 py-3 text-primary"><%= link_to @user.following.count, followings_user_path(@user) %></td>
+          </tr>
+          <tr class="row-12 border-top">
+            <td class="col-6 py-3">follower</td>
+            <td class="col-6 py-3 text-primary"><%= link_to @user.followers.count, followers_user_path(@user) %></td>
           </tr>
         </tbody>
       </table>
+      <% unless current_user == @user %>
+         <% if current_user.following?(@user) %>
+            <%= link_to "フォロー外す", unfollow_user_path(@user), method: :delete, class: "btn btn-info" %>
+          <% else %>
+            <%= link_to "フォローする", follow_user_path(@user), method: :post, class: "btn btn-success" %>
+          <% end %>
+        <% end %>
 
       <div class="row mt-5 mb-3">
         <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block" do %>
@@ -40,5 +56,6 @@
 
       <% end %>
 
-      </div>
+    </div>
+  </body>
 </html>

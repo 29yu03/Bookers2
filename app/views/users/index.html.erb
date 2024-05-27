@@ -6,18 +6,32 @@
       <h2>Users</h2>
       <table class="table">
         <thead>
-          <tr class="row border-top">
-            <th class="col-4 p-3">image</th>
-            <th class="col-5 p-3">name</th>
-            <th class="col-3 p-3"></th>
+          <tr class="row-md-12 border-top">
+            <th class="col-1 py-3">image</th>
+            <th class="col-2 py-3">name</th>
+            <th class="col-3 py-3"></th>
+            <th class="col-3 py-3"></th>
+            <th class="col-4 py-3"></th>
+            <th class="col-1 py-3"></th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |user| %>
-            <tr class="row border-top">
-              <td class="col-4 p-3"><%= image_tag user.get_profile_image(100,100) %></td>
-              <td class="col-5 p-3 align-top"><%= user.name %></td>
-              <td class="col-3 p-3 align-top"><%= link_to "Show", user_path(user)%></td>
+            <tr class="row-md-12 border-top">
+              <td class="col-1 py-3"><%= image_tag user.get_profile_image(50,50) %></td>
+              <td class="col-1 py-3 align-top" style="font-size: 70%;"><%= user.name %></td>
+              <td class="col-3 py-3" style="font-size: 90%;">フォロー数:<%= user.following.count %></td>
+              <td class="col-3 py-3" style="font-size: 90%;">フォロワー数:<%= user.followers.count %></td>
+              <td class="col-4 py-3" style="font-size: 90%;">
+                <% unless current_user == user %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to "フォロー外す", unfollow_user_path(user), method: :delete %>
+                  <% else %>
+                    <%= link_to "フォローする", follow_user_path(user), method: :post %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="col-1 py-3 align-top"><%= link_to "Show", user_path(user)%></td>
             </tr>
           <% end %>
         </tbody>

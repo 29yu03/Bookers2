@@ -1,0 +1,26 @@
+<div class="container-fluid">
+<h2>Follower Users</h2>
+<table class="w-100">
+  <thead>
+    <tr class="row-xl-12 border-top">
+      <th class="col-2 py-2 pr-5">image</th>
+      <th class="col-2 py-2 pr-5">name</th>
+      <th class="col-3 py-2 pr-5"></th>
+      <th class="col-3 py-3 pr-5"></th>
+      <th class="col-2 py-3 pr-5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr class="row-xl-12 border-top">
+      <td class="col-2 py-2 pr-5"><%= image_tag user.get_profile_image(50,50) %></td>
+      <td class="col-2 py-2 pr-5"><%= user.name %></td>
+      <td class="col-3 py-2 pr-5">フォロー数:<%= user.following.count %></td>
+      <td class="col-3 py-2 pr-5">フォロワー数:<%= user.followers.count %></td>
+      <td class="col-2 py-2 pr-5"><%= link_to "Show", user_path(user)%></td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
