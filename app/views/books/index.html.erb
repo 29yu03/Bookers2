@@ -40,9 +40,11 @@
                 <% end %>
               <td class="col-2 p-3 align-top"><%= link_to book.title, book_path(book) %></td>
               <td class="col-3 p-3 align-top"><%= book.body %></td>
-              <td class="col-1 p-3">
-                <%= render 'favorites/favorite_btn', book: book %>
+
+              <td class="col-1 p-3", id="favorite_btn_<%= book.id %>">
+                <%= render 'favorites/btn', book: book %>
               </td>
+
               <td class="col-3 p-3">
                 <p>コメント数：<%= book.book_comments.count %></p>
               </td>

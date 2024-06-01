@@ -5,10 +5,7 @@ class BookCommentsController < ApplicationController
     @book_comment = current_user.book_comments.new(book_comment_params)
     @book_comment.book_id = @book.id
     if @book_comment.save
-      respond_to do |format|
-        format.html { redirect_to book_path(@book) }
-        format.js
-      end
+      @new_book_comment = BookComment.new
     else
       render 'books/show'
     end
@@ -18,10 +15,6 @@ class BookCommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = @book.book_comments.find(params[:id])
     @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to book_path(@book) }
-      format.js
-    end
   end
 
   private
