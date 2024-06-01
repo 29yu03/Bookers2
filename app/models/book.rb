@@ -4,6 +4,7 @@ class Book < ApplicationRecord
   validates :body, presence: true
   validates :body, length: { maximum: 200, message: 'Opinion is too long (maximum is 200 characters)'}
   has_many :favorites, dependent: :destroy
+  has_many :week_favorites, -> { where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day) }
   has_many :book_comments, dependent: :destroy
 
   def favorited_by?(user)
