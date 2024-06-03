@@ -15,5 +15,7 @@ Rails.application.routes.draw do
       delete :unfollow, to: 'relationships#destroy'
     end
   end
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show]
 
 end

@@ -5,6 +5,37 @@ before_action :set_user, only: [:show, :followings, :followers]
   def show
     @user = User.find(params[:id])
     @books = @user.books
+
+    #現在ログインしているユーザーの全Entryデータを取得
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    #@userの全Entryデータを取得
+    @userEntry = Entry.where(user_id: @user.id)
+    
+    #@user と current_user が別人の時
+      #ログイン中のユーザーの全Entryデータを1つずつ取り出す
+        #@userの全Entryデータを1つずつ取り出す
+          #もし、ログイン中ユーザーのEntryデータの内、room_idが@userのEntryデータの持つroom_idと同じ時
+            #ログイン中ユーザーと@userの共通のRoomが存在することを明確にする
+            #@roomIdにログイン中のユーザーと@userの共通のroom_idを代入
+      #もし、@isRoomが
+      #falseの時
+        #新しい Roomと Entryを作成
+
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
