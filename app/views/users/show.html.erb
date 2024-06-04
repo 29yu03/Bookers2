@@ -6,7 +6,7 @@
 
 <div class="container px-5">
   <div class="row">
-    <%= render 'list', users: @users %>
+    <%= render 'list2', users: @users %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
@@ -24,7 +24,7 @@
             <td class="col-3 p-3">
               <%= link_to user_path(book.user) do %>
                 <%= image_tag @user.get_profile_image(100, 100) %></td>
-              <% end %>
+            <% end %>
             <td class="col-3 p-3 align-top"><%= link_to book.title, book %></td>
             <td class="col-6 p-3 align-top"><%= book.body %></td>
           </tr>

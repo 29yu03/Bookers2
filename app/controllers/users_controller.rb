@@ -10,7 +10,7 @@ before_action :set_user, only: [:show, :followings, :followers]
     @currentUserEntry = Entry.where(user_id: current_user.id)
     #@userの全Entryデータを取得
     @userEntry = Entry.where(user_id: @user.id)
-    
+
     #@user と current_user が別人の時
       #ログイン中のユーザーの全Entryデータを1つずつ取り出す
         #@userの全Entryデータを1つずつ取り出す

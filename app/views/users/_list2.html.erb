@@ -40,6 +40,23 @@
             <% end %>
           <% end %>
         </div>
+
+        <div class="col-5 pt-1">
+          <% if @user != current_user %>
+            <% if (current_user.following?(@user)) && (@user.following?(current_user)) %>
+              <% if @isRoom == true %>
+                <%= link_to "chatへ",  room_path(@roomId) %>
+              <% else %>
+                <%= form_with model: @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "chatを始める", class:"btn btn-link" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div class="row mt-5 mb-3">
