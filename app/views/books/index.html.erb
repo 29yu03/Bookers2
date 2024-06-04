@@ -21,33 +21,34 @@
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
-      <table>
+      <table width="100%">
         <thead>
-          <tr class="row-md-12 border-top">
-            <th class="col-3 p-3"></th>
-            <th class="col-2 p-3">Title</th>
-            <th class="col-3 p-3">Opinion</th>
-            <th class="col-1 p-3"></th>
-            <th class="col-3 p-3"></th>
+          <tr class="border-top">
+            <th></th>
+            <th class="p-3">Title</th>
+            <th class="p-3">Opinion</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @books.each do |book| %>
-            <tr class="row-md-12 border-top">
-              <td class="col-3 p-3">
+            <tr class="border-top">
+              <td class="p-3">
                 <%= link_to user_path(book.user) do %>
                 <%= image_tag book.user.get_profile_image(100,100) %></td>
                 <% end %>
-              <td class="col-2 p-3 align-top"><%= link_to book.title, book_path(book) %></td>
-              <td class="col-3 p-3 align-top"><%= book.body %></td>
+              <td class="p-3 align-top"><%= link_to book.title, book_path(book) %></td>
+              <td class="p-3 align-top"><%= book.body %></td>
 
-              <td class="col-1 p-3", id="favorite_btn_<%= book.id %>">
+              <td class="p-3", id="favorite_btn_<%= book.id %>">
                 <%= render 'favorites/btn', book: book %>
               </td>
 
-              <td class="col-3 p-3">
+              <td class="p-3">
                 <p>コメント数：<%= book.book_comments.count %></p>
               </td>
+              <td>閲覧数 <%= @book.view_counts.count %></td>
             </tr>
 
           <% end %>
