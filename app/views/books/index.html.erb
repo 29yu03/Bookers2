@@ -48,7 +48,9 @@
               <td class="p-3">
                 <p>コメント数：<%= book.book_comments.count %></p>
               </td>
-              <td>閲覧数 <%= @book.view_counts.count %></td>
+              <td>
+                <%= render 'view_count', book: book %>
+              </td>
             </tr>
 
           <% end %>

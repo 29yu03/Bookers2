@@ -34,7 +34,7 @@
               <%= render 'book_comments/counter', book: @book %>
             </td>
             <td class="p-3 align-top">
-              閲覧数 <%= @book.view_counts.count %>
+              <%= render 'view_count', book: @book %>
             </td>
           </tr>
         </tbody>
